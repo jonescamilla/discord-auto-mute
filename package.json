@@ -2,10 +2,10 @@
   "name": "auto-mute",
   "version": "1.0.0",
   "description": "discord bot that auto mutes user on join of voice channel",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "nodemon dist/index.js"
+    "dev": "nodemon dist/auto-mute-bot.js"
   },
   "author": "jonathan",
   "license": "MIT",
