@@ -1,0 +1,1 @@
+Discord bot to auto mute members when they join a voice channel for 5 seconds.
