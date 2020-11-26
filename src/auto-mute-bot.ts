@@ -34,8 +34,4 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
   }
 });
 
-bot.on('message', (msg: Discord.Message) => {
-  if (msg.content === 'foo') msg.reply('`bar`');
-});
-
 bot.login(DISCORD_BOT_TOKEN);
