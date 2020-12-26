@@ -1,6 +1,6 @@
 import { Message, GuildMember, Role } from 'discord.js';
 // variables
-import { rankings } from './variables';
+import { rankings } from '../variables';
 const { rank_500, rank_400, rank_300, rank_490, rank_390 } = rankings;
 // helper utils
 import {
@@ -10,7 +10,7 @@ import {
   singleRoleValidation,
   displayMessage,
   replaceRole,
-} from './utils';
+} from '../utils';
 
 /**
  * Will nominate user by removing user's current role and adding new nominated role
