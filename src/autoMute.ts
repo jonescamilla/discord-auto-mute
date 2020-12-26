@@ -1,6 +1,6 @@
 import Discord from 'discord.js';
 
-let memberUnmute: NodeJS.Timeout;
+let timeoutId: NodeJS.Timeout;
 /**
  * Will auto mute members that join a voice channel for `time` amount
  * @param oldState Previous user VoiceState
@@ -17,7 +17,7 @@ export const autoMute = (
 
   // if the user leaves a channel clear the setTimeout
   if (oldChannel !== newChannel && oldChannel !== null) {
-    clearTimeout(memberUnmute);
+    clearTimeout(timeoutId);
   }
 
   if (
@@ -31,7 +31,7 @@ export const autoMute = (
     // mute the member on voice join
     newState.member?.voice.setMute(true);
     // assign the variable to unmute
-    memberUnmute = setTimeout(function () {
+    timeoutId = setTimeout(function () {
       oldState.member?.voice.setMute(false);
     }, time);
   }
