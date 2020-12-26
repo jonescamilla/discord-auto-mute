@@ -1,8 +1,8 @@
 import Discord from 'discord.js';
-import { autoMute } from './autoMute';
+import { autoMute } from './features/autoMute';
 import { prefix } from './variables';
-import { nominate } from './nominate';
-import { promote } from './promote';
+import { nominate } from './commands/nominate';
+import { promote } from './commands/promote';
 const client = new Discord.Client();
 require('dotenv').config();
 
