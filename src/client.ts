@@ -1,16 +1,23 @@
 import Discord from 'discord.js';
-const bot = new Discord.Client();
+const client = new Discord.Client();
 require('dotenv').config();
 
 const { DISCORD_BOT_TOKEN } = process.env;
 
-let memberUnmute: any;
-
-bot.on('ready', () => {
-  console.log(`Logged in as ${bot.user?.tag}`);
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user?.tag}`);
 });
 
-bot.on('voiceStateUpdate', (oldState, newState) => {
+client.on('voiceStateUpdate', (oldState, newState) => {
+  autoMute(oldState, newState);
+});
+
+let memberUnmute: NodeJS.Timeout;
+
+const autoMute = (
+  oldState: Discord.VoiceState,
+  newState: Discord.VoiceState
+) => {
   const oldChannel = oldState.channelID;
   const newChannel = newState.channelID;
 
@@ -32,6 +39,6 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
       oldState.member?.voice.setMute(false);
     }, 5000);
   }
-});
+};
 
-bot.login(DISCORD_BOT_TOKEN);
+client.login(DISCORD_BOT_TOKEN);
