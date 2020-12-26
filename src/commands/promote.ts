@@ -1,8 +1,8 @@
 // helper utils
 import { Message, GuildMember } from 'discord.js';
-import { getUserEntityRank, replaceRole } from './utils';
+import { getUserEntityRank, replaceRole } from '../utils';
 // variables
-import { rankings } from './variables';
+import { rankings } from '../variables';
 const { rank_500, rank_400, rank_300, rank_200, rank_100 } = rankings;
 
 /**
