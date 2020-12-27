@@ -41,10 +41,14 @@ client.on('message', async (message) => {
       message.channel.send('Pong!');
       break;
     case 'promote':
-      message.channel.send(promote(message, promoter, promotee));
+      message.channel
+        .send(promote(message, promoter, promotee))
+        .catch((err) => console.error(err));
       break;
     case 'nominate':
-      message.channel.send(await nominate(message, promoter, promotee));
+      message.channel
+        .send(await nominate(message, promoter, promotee))
+        .catch((err) => console.error(err));
       break;
   }
   return;

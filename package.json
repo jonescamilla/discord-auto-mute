@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "nodemon dist/auto-mute-bot.js"
+    "dev": "nodemon dist/bot.js"
   },
   "author": "jonathan",
   "license": "MIT",
