@@ -45,7 +45,7 @@ const nominateMember = (
   }
   // NEEDS IMPROVEMENT
   return {
-    msg: 'something happened',
+    msg: 'something happened in adjusting roles',
     currentRole: undefined,
   };
 };
@@ -133,35 +133,38 @@ export const nominate = async (
       else return false;
     };
     // initiate createReactionCollector to handle votes through reactions
+    let collectedVotes
     nominatedMessage
       ?.createReactionCollector(reactionCollectorFilter, {
         time: 15000,
       })
       // when there is a valid connection
-      .on('collect', (reaction, user) =>
-        console.log(`Collected ${reaction.emoji.name} from ${user.tag}`)
-      )
+      .on('collect', (reaction, user) => {
+        console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
+      })
       // when the collection ends run
       .on('end', (collected: { size: number }) => {
         console.log(`Collected ${collected.size} items`);
-        if (collected.size >= requiredVotes) {
-          return replaceRole(
-            message,
-            promotee,
-            // NEEDS IMPROVEMENT
-            currentRole?.name || '',
-            newRole
-          );
-        } else {
-          return replaceRole(
-            message,
-            promotee,
-            // NEEDS IMPROVEMENT
-            currentRole?.name || '',
-            promoteeRankName
-          );
-        }
+        collectedVotes = collected.size;
       });
+
+    if (collectedVotes ? collectedVotes : 0 >= requiredVotes) {
+      return replaceRole(
+        message,
+        promotee,
+        // NEEDS IMPROVEMENT
+        currentRole?.name || '',
+        newRole
+      );
+    } else {
+      return replaceRole(
+        message,
+        promotee,
+        // NEEDS IMPROVEMENT
+        currentRole?.name || '',
+        promoteeRankName
+      );
+    }
   }
-  return 'something happened';
+  return 'something happened in nomination';
 };
